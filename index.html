@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foundry Art — Page Wireframe</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bronze:     #8B6914;
+    --bronze-l:   #C9A84C;
+    --bronze-bg:  #F5EDD6;
+    --charcoal:   #1A1814;
+    --slate:      #4A4540;
+    --mid:        #7A7068;
+    --rule:       #DDD5C0;
+    --cream:      #FAFAF5;
+    --white:      #FFFFFF;
+    --wire-fill:  #EDE8DF;
+    --wire-stroke:#C5BDB0;
+    --label:      #A09888;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #F0ECE4;
+    font-family: 'Jost', sans-serif;
+    color: var(--charcoal);
+  }
+
+  /* ── Annotation system ── */
+  .page { max-width: 960px; margin: 0 auto; background: var(--cream); position: relative; }
+
+  .section-label {
+    position: absolute;
+    left: -200px;
+    width: 144px;
+    text-align: right;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--bronze);
+    padding-top: 4px;
+    padding-right: 12px;
+  }
+  .section-label::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2px;
+    height: 36px;
+    background: var(--bronze-l);
+  }
+  .section-note {
+    position: absolute;
+    right: -220px;
+    width: 200px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    color: var(--mid);
+    line-height: 1.5;
+    padding-left: 12px;
+    border-left: none;
+    padding-top: 4px;
+  }
+
+  /* ── Wire placeholder image ── */
+  .wire-img {
+    background: var(--wire-fill);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--label);
+  }
+
+  /* ══════════════════════════════════════
+     01 NAV
+  ══════════════════════════════════════ */
+  .nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .nav-links span { cursor: default; }
+  .nav-links span.active { color: var(--charcoal); border-bottom: 1px solid var(--charcoal); }
+  .nav-cta {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: var(--charcoal);
+    color: var(--white);
+    padding: 8px 18px;
+    cursor: default;
+  }
+
+  /* ══════════════════════════════════════
+     02 HERO
+  ══════════════════════════════════════ */
+  .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+  .hero-image { position: relative; }
+  .hero-image .wire-img { width: 100%; height: 100%; min-height: 520px; }
+  .hero-image .wire-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 70%, var(--cream));
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 48px 60px 40px;
+    background: var(--cream);
+  }
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 20px;
+  }
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--slate);
+    margin-bottom: 32px;
+    max-width: 340px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: var(--charcoal);
+    color: var(--white);
+    padding: 12px 24px;
+    cursor: default;
+  }
+  .btn-secondary {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--charcoal);
+    color: var(--charcoal);
+    padding: 12px 24px;
+    cursor: default;
+  }
+  .hero-badge {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    gap: 32px;
+  }
+  .badge-item { font-size: 10px; color: var(--mid); line-height: 1.6; }
+  .badge-item strong { display: block; font-size: 12px; color: var(--charcoal); font-weight: 500; }
+
+  /* ══════════════════════════════════════
+     03 BRAND STATEMENT BAND
+  ══════════════════════════════════════ */
+  .brand-band {
+    position: relative;
+    background: var(--charcoal);
+    padding: 36px 80px;
+    text-align: center;
+  }
+  .brand-band p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bronze-l);
+    line-height: 1.5;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .brand-band cite {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 12px;
+    font-style: normal;
+  }
+
+  /* ══════════════════════════════════════
+     04 CRAFT STORY
+  ══════════════════════════════════════ */
+  .craft {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .craft-content {
+    padding: 72px 56px 72px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 16px;
+  }
+  .section-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 18px;
+  }
+  .section-body {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--slate);
+    margin-bottom: 24px;
+  }
+  .craft-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .craft-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .craft-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--bronze-l);
+    line-height: 1;
+    min-width: 28px;
+  }
+  .craft-step-text strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 3px;
+  }
+  .craft-step-text span { font-size: 11px; color: var(--mid); line-height: 1.5; }
+  .craft-images {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+  }
+  .craft-images .wire-img { min-height: 220px; }
+
+  /* ══════════════════════════════════════
+     05 PRODUCT GRID
+  ══════════════════════════════════════ */
+  .products {
+    position: relative;
+    padding: 80px;
+    background: var(--white);
+  }
+  .products-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+  .products-header-left {}
+  .filter-tabs {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+  .filter-tab {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    color: var(--mid);
+    border-right: 1px solid var(--rule);
+    cursor: default;
+  }
+  .filter-tab:last-child { border-right: none; }
+  .filter-tab.active { background: var(--charcoal); color: var(--white); }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .product-card {}
+  .product-card .wire-img { aspect-ratio: 1; width: 100%; margin-bottom: 14px; }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .product-meta { font-size: 10px; color: var(--mid); margin-bottom: 10px; }
+  .product-price { font-size: 12px; color: var(--charcoal); font-weight: 500; }
+  .product-cta {
+    display: block;
+    margin-top: 10px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--bronze);
+    text-decoration: none;
+    border-bottom: 1px solid var(--bronze-l);
+    padding-bottom: 2px;
+    width: fit-content;
+  }
+
+  /* ══════════════════════════════════════
+     06 IN-SITU / DESIGN IDEAS
+  ══════════════════════════════════════ */
+  .design-ideas {
+    position: relative;
+    padding: 80px;
+    background: var(--cream);
+  }
+  .design-ideas-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .insitu-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 4px;
+  }
+  .insitu-grid .wire-img:first-child {
+    grid-row: 1 / 3;
+    min-height: 480px;
+  }
+  .insitu-grid .wire-img { min-height: 232px; }
+  .insitu-caption {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 11px;
+    color: var(--mid);
+    font-style: italic;
+  }
+
+  /* ══════════════════════════════════════
+     07 HARDWARE
+  ══════════════════════════════════════ */
+  .hardware {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .hardware-image .wire-img { width: 100%; min-height: 480px; }
+  .hardware-content {
+    background: var(--bronze-bg);
+    padding: 72px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hardware-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .hardware-item .wire-img { aspect-ratio: 1; width: 100%; margin-bottom: 8px; }
+  .hardware-item p { font-size: 10px; color: var(--slate); text-align: center; }
+
+  /* ══════════════════════════════════════
+     08 EXPERT GUIDANCE
+  ══════════════════════════════════════ */
+  .guidance {
+    position: relative;
+    background: var(--charcoal);
+    padding: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .guidance-intro { grid-column: 1; }
+  .guidance-intro .section-eyebrow { color: var(--bronze-l); }
+  .guidance-intro .section-headline { color: var(--white); font-size: 30px; }
+  .guidance-intro .section-body { color: #9A9088; }
+  .guidance-cards { grid-column: 2 / 4; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .guidance-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 24px;
+  }
+  .guidance-card-icon {
+    width: 32px; height: 32px;
+    background: var(--bronze);
+    opacity: 0.8;
+    margin-bottom: 16px;
+  }
+  .guidance-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .guidance-card p { font-size: 11px; color: #9A9088; line-height: 1.6; }
+  .guidance-card-cta {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--bronze-l);
+    border-bottom: 1px solid var(--bronze);
+    padding-bottom: 2px;
+  }
+
+  /* ══════════════════════════════════════
+     09 SOCIAL PROOF
+  ══════════════════════════════════════ */
+  .social-proof {
+    position: relative;
+    padding: 80px;
+    background: var(--white);
+  }
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .testimonial {
+    border-top: 2px solid var(--bronze-l);
+    padding-top: 24px;
+  }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+  .testimonial-stars { color: var(--bronze); font-size: 12px; margin-bottom: 8px; letter-spacing: 2px; }
+  .testimonial-attribution { font-size: 10px; color: var(--mid); }
+
+  /* ══════════════════════════════════════
+     10 FURTHER INFO / RESOURCES
+  ══════════════════════════════════════ */
+  .resources {
+    position: relative;
+    padding: 64px 80px;
+    background: var(--cream);
+    border-top: 1px solid var(--rule);
+  }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 36px;
+  }
+  .resource-card {
+    border: 1px solid var(--rule);
+    padding: 24px;
+    background: var(--white);
+  }
+  .resource-icon {
+    width: 36px; height: 44px;
+    background: var(--wire-fill);
+    border: none;
+    margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: var(--label);
+  }
+  .resource-card h4 { font-size: 12px; font-weight: 500; color: var(--charcoal); margin-bottom: 6px; }
+  .resource-card p { font-size: 10px; color: var(--mid); line-height: 1.5; }
+  .resource-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--bronze);
+    border-bottom: 1px solid var(--bronze-l);
+    padding-bottom: 2px;
+  }
+
+  /* ══════════════════════════════════════
+     11 FOOTER CTA
+  ══════════════════════════════════════ */
+  .footer-cta {
+    position: relative;
+    background: var(--charcoal);
+    padding: 80px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 60px;
+  }
+  .footer-cta-text .section-eyebrow { color: var(--bronze-l); margin-bottom: 14px; }
+  .footer-cta-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .footer-cta-text p { font-size: 12px; color: #9A9088; }
+  .footer-cta-actions { display: flex; flex-direction: column; gap: 12px; }
+  .btn-primary-lg {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--bronze);
+    color: var(--white);
+    padding: 14px 32px;
+    cursor: default;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .btn-ghost {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    padding: 14px 32px;
+    cursor: default;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  /* ══════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════ */
+  .footer {
+    background: #111;
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer p { font-size: 10px; color: #555; letter-spacing: 1px; }
+
+  /* ══════════════════════════════════════
+     WIREFRAME WRAPPER & LEGEND
+  ══════════════════════════════════════ */
+  .wf-wrapper {
+    padding: 60px 220px 60px 220px;
+    position: relative;
+  }
+  .wf-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .wf-title h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .wf-title p { font-size: 11px; color: var(--mid); letter-spacing: 1px; }
+  .wf-title small {
+    display: block;
+    font-size: 9px;
+    color: var(--bronze);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .section-wrap { position: relative; }
+  .section-wrap + .section-wrap { margin-top: 0; }
+
+  /* section number badge */
+  .sec-num {
+    position: absolute;
+    left: -48px;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--bronze);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Responsive annotation handling ── */
+  @media (max-width: 1300px) {
+    .section-note { display: none; }
+    .wf-wrapper { padding: 60px 40px 60px 220px; }
+  }
+
+  @media (max-width: 800px) {
+    .wf-wrapper { padding: 40px 16px 40px 16px; }
+    .section-label { display: none; }
+    .sec-num {
+      position: static;
+      display: inline-flex;
+      margin-bottom: 4px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .wf-wrapper { padding: 40px 16px 40px 16px; }
+    .section-label { display: none; }
+    .sec-num {
+      position: static;
+      display: inline-flex;
+      margin-bottom: 4px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="wf-wrapper">
+
+  <div class="wf-title">
+    <small>The Main Sequence · Page Wireframe</small>
+    <h1>Foundry Art — Redesigned Page</h1>
+    <p>lindenworkshops.com/foundry-art/ &nbsp;·&nbsp; Content structure & layout concept &nbsp;·&nbsp; 2026</p>
+  </div>
+
+  <div class="page">
+
+    <!-- ══ 01 NAV ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">01</div>
+      <div class="section-label">Navigation</div>
+      <div class="section-note">Simplified nav. Foundry Art as primary brand. Linden Workshops as parent, visible but subordinate. Single clear CTA: Shop.</div>
+      <nav class="nav">
+        <div class="nav-logo">Foundry Art</div>
+        <div class="nav-links">
+          <span class="active">Tiles</span>
+          <span>Hardware</span>
+          <span>Design Ideas</span>
+          <span>Our Story</span>
+          <span>How to Buy</span>
+        </div>
+        <div class="nav-cta">Shop Now</div>
+      </nav>
+    </div>
+
+    <!-- ══ 02 HERO ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">02</div>
+      <div class="section-label">Hero</div>
+      <div class="section-note">Full-bleed hero image with content panel overlaid on the right half. Content background matches image tone. Two CTAs: Shop tiles / See design ideas. Trust signals below.</div>
+      <div class="hero">
+        <div class="hero-image">
+          <div class="wire-img">Hero — installed bronze tile photography</div>
+        </div>
+        <div class="hero-content">
+          <p class="hero-eyebrow">American studio · Est. 1990</p>
+          <h1 class="hero-headline">Small detail.<br>Unmistakable<br>difference.</h1>
+          <p class="hero-sub">Carved by hand. Cast in solid bronze. The only American studio making decorative metal accent tile and hardware — available direct from our studio.</p>
+          <div class="hero-ctas">
+            <div class="btn-primary">Shop Tiles</div>
+            <div class="btn-secondary">See Design Ideas</div>
+          </div>
+          <div class="hero-badge">
+            <div class="badge-item"><strong>35+ Years</strong>American studio</div>
+            <div class="badge-item"><strong>Solid Bronze</strong>Not ceramic. Not plated.</div>
+            <div class="badge-item"><strong>Hand-Cast</strong>Every piece</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 03 BRAND STATEMENT ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">03</div>
+      <div class="section-label">Brand Voice</div>
+      <div class="section-note">A single editorial moment. Emotional hook before product is presented. Establishes tone: considered, permanent, artisan.</div>
+      <div class="brand-band">
+        <p>"I'm buying a piece of art — made by American hands, built to last a lifetime. That's what bronze means."</p>
+        <cite>— Customer voice / brand narrative</cite>
+      </div>
+    </div>
+
+    <!-- ══ 04 CRAFT STORY ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">04</div>
+      <div class="section-label">Craft Story</div>
+      <div class="section-note">The "why bronze" and "who made this" answer. Addresses user research finding that the story is missing. Process steps build trust before price is encountered.</div>
+      <div class="craft">
+        <div class="craft-content">
+          <p class="section-eyebrow">How we make them</p>
+          <h2 class="section-headline">Cast by hand.<br>Built for keeps.</h2>
+          <p class="section-body">Every Foundry Art tile begins as a hand-carved original. From that master, we create a bronze casting — solid, not plated — finished by hand and checked before it leaves our studio in Chicago.</p>
+          <div class="craft-steps">
+            <div class="craft-step">
+              <div class="craft-step-num">1</div>
+              <div class="craft-step-text"><strong>Hand Carved</strong><span>Each design originates as a hand-carved master by our studio artisans.</span></div>
+            </div>
+            <div class="craft-step">
+              <div class="craft-step-num">2</div>
+              <div class="craft-step-text"><strong>Cast in Solid Bronze</strong><span>Molten bronze is cast from the master — solid through, not a surface treatment.</span></div>
+            </div>
+            <div class="craft-step">
+              <div class="craft-step-num">3</div>
+              <div class="craft-step-text"><strong>Hand Finished & Inspected</strong><span>Each piece is finished by hand, checked, and packed before it ships to you.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="craft-images">
+          <div class="wire-img">Process photo — carving / casting</div>
+          <div class="wire-img">Process photo — finishing / studio</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 05 PRODUCT GRID ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">05</div>
+      <div class="section-label">Product Tiles</div>
+      <div class="section-note">Filter tabs replace confusing sub-categories. Product cards show tile isolated, then in-situ on hover. Price visible, with "buy a few, not a floor" framing nearby.</div>
+      <div class="products">
+        <div class="products-header">
+          <div class="products-header-left">
+            <p class="section-eyebrow">Accent Tiles</p>
+            <h2 class="section-headline" style="font-size:28px;">Shop the Collection</h2>
+          </div>
+          <div class="filter-tabs">
+            <div class="filter-tab active">All</div>
+            <div class="filter-tab">Insets</div>
+            <div class="filter-tab">Liners</div>
+            <div class="filter-tab">Traditional Bronze</div>
+            <div class="filter-tab">White Bronze</div>
+          </div>
+        </div>
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="wire-img">Lotus 3×3</div>
+            <div class="product-name">Lotus</div>
+            <div class="product-meta">3×3 inch · Traditional Bronze</div>
+            <div class="product-price">From $89</div>
+            <a class="product-cta">Add to Cart</a>
+          </div>
+          <div class="product-card">
+            <div class="wire-img">Cabochon 3×3</div>
+            <div class="product-name">Cabochon</div>
+            <div class="product-meta">3×3 inch · White Bronze</div>
+            <div class="product-price">From $89</div>
+            <a class="product-cta">Add to Cart</a>
+          </div>
+          <div class="product-card">
+            <div class="wire-img">Moon Blossom 2×2</div>
+            <div class="product-name">Moon Blossom</div>
+            <div class="product-meta">2×2 inch · Traditional Bronze</div>
+            <div class="product-price">From $69</div>
+            <a class="product-cta">Add to Cart</a>
+          </div>
+          <div class="product-card">
+            <div class="wire-img">Straight Line Liner</div>
+            <div class="product-name">Straight Line</div>
+            <div class="product-meta">10-inch liner · White Bronze</div>
+            <div class="product-price">From $49</div>
+            <a class="product-cta">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 06 DESIGN IDEAS ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">06</div>
+      <div class="section-label">Design Ideas</div>
+      <div class="section-note">In-situ photography moved to dedicated section. Addresses confusion from user research — context is now clear. Captions identify specific tile + setting.</div>
+      <div class="design-ideas">
+        <div class="design-ideas-header">
+          <p class="section-eyebrow">Inspiration</p>
+          <h2 class="section-headline">See it in a space</h2>
+          <p class="section-body" style="max-width:480px;margin:0 auto;">Each photo shows a specific Foundry Art tile installed in a real project. Tap any image to see which tile was used.</p>
+        </div>
+        <div class="insitu-grid">
+          <div class="wire-img">Feature — large installed photo</div>
+          <div class="wire-img">Installed photo 2</div>
+          <div class="wire-img">Installed photo 3</div>
+          <div class="wire-img">Installed photo 4</div>
+          <div class="wire-img">Installed photo 5</div>
+        </div>
+        <p class="insitu-caption">Each image tagged with specific tile, finish, and setting — tap to explore</p>
+      </div>
+    </div>
+
+    <!-- ══ 07 EXPERT GUIDANCE ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">07</div>
+      <div class="section-label">Expert Guidance + Resources</div>
+      <div class="section-note">Buying guidance and downloadable resources combined. Addresses #1 purchase barrier from user research. PDFs surface here rather than in the footer.</div>
+      <div class="guidance">
+        <div class="guidance-intro">
+          <p class="section-eyebrow">Expert Guidance</p>
+          <h2 class="section-headline">Not sure where to start?</h2>
+          <p class="section-body">Unlike floor tile, Foundry Art products are accent pieces — you typically need far fewer than you think. Everything you need to plan your project is here.</p>
+        </div>
+        <div class="guidance-cards">
+          <div class="guidance-card">
+            <div class="guidance-card-icon">PDF</div>
+            <h4>Tear Sheet</h4>
+            <p>Full product overview for sharing with your designer or contractor.</p>
+            <span class="guidance-card-cta">Download →</span>
+          </div>
+          <div class="guidance-card">
+            <div class="guidance-card-icon">PDF</div>
+            <h4>How We Make Our Tiles</h4>
+            <p>A detailed look at the hand-carving and bronze casting process — from master carving to finished piece.</p>
+            <span class="guidance-card-cta">Download →</span>
+          </div>
+          <div class="guidance-card">
+            <div class="guidance-card-icon">PDF</div>
+            <h4>Installation & Cleaning</h4>
+            <p>Everything your installer needs to set and maintain Foundry Art tile correctly.</p>
+            <span class="guidance-card-cta">Download →</span>
+          </div>
+          <div class="guidance-card">
+            <div class="guidance-card-icon">PDF</div>
+            <h4>Sustainability</h4>
+            <p>Our recycled content standards and environmental commitments.</p>
+            <span class="guidance-card-cta">Download →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 08 CUSTOMER STORIES ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">08</div>
+      <div class="section-label">Social Proof</div>
+      <div class="section-note">Follows expert guidance — buyer has been informed and equipped, customer voices close the trust loop before the final CTA.</div>
+      <div class="social-proof">
+        <div style="text-align:center">
+          <p class="section-eyebrow">Customer Stories</p>
+          <h2 class="section-headline" style="font-size:28px;">What our customers say</h2>
+        </div>
+        <div class="testimonials">
+          <div class="testimonial">
+            <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+            <p class="testimonial-quote">"I've never seen anything like it. The tile completely transformed our kitchen floor — guests always ask about it."</p>
+            <p class="testimonial-attribution">— Customer name, Chicago IL</p>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+            <p class="testimonial-quote">"The quality is extraordinary. You can feel the weight and craft the moment you hold it. Worth every penny."</p>
+            <p class="testimonial-attribution">— Customer name, New York NY</p>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+            <p class="testimonial-quote">"These tiles made our renovation. Every guest notices them — and no one can believe they found them online."</p>
+            <p class="testimonial-attribution">— Customer name, San Francisco CA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 09 FOOTER CTA ══ -->
+    <div class="section-wrap">
+      <div class="sec-num">09</div>
+      <div class="section-label">Footer CTA</div>
+      <div class="section-note">Final conversion moment. Two paths: Shop (primary) or Contact Studio (for high-consideration buyers). ✓ CTA copy: "Shop Now".</div>
+      <div class="footer-cta">
+        <div class="footer-cta-text">
+          <p class="section-eyebrow">Ready to start?</p>
+          <h2>The detail your<br>room is missing.</h2>
+          <p>Hand cast in solid bronze. Shipped direct from our Chicago studio.</p>
+        </div>
+        <div class="footer-cta-actions">
+          <div class="btn-primary-lg">Shop Now</div>
+          <div class="btn-ghost">Contact the Studio</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ FOOTER ══ -->
+    <div class="footer">
+      <p>© 2026 Linden Workshops · Foundry Art is a Linden Workshops brand</p>
+      <p>773 784-2628 &nbsp;·&nbsp; Instagram &nbsp;·&nbsp; Houzz</p>
+    </div>
+
+  </div><!-- /page -->
+</div><!-- /wrapper -->
+
+</body>
+</html>
